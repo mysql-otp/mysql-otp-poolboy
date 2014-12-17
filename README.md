@@ -13,7 +13,7 @@ Features:
 See also:
 
 * [MySQL/OTP](//github.com/mysql-otp/mysql-otp)
-* [Poolboy](//.github.com/devinus/poolboy)
+* [Poolboy](//github.com/devinus/poolboy)
 
 Examples:
 ```Erlang
