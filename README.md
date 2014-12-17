@@ -12,8 +12,8 @@ Features:
 
 See also:
 
-* [MySQL/OTP](//mysql-otp.github.io/mysql-otp/mysql-otp)
-* [Poolboy](//mysql-otp.github.io/devinus/poolboy)
+* [MySQL/OTP](//github.com/mysql-otp/mysql-otp)
+* [Poolboy](//.github.com/devinus/poolboy)
 
 Examples:
 ```Erlang
