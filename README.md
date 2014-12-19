@@ -1,24 +1,20 @@
-MySQL/OTP - poolboy
-=================
+MySQL/OTP + Poolboy
+===================
 
-MySQL/OTP - poolboy is a wrapper for MySQL/OTP and poolboy where you create pools for MySQL/OTP.
-Each application is responsible to supervise the pools by themself, MySQL/OTP - poolboy will not handle
-it.
+MySQL/OTP + Poolboy is a wrapper for [MySQL/OTP](//github.com/mysql-otp/mysql-otp) and
+[Poolboy](//github.com/devinus/poolboy) where you create connection pools for the former. 
+Each application is itself responsible for supervising the pools, i.e. MySQL/OTP + Poolboy won't
+do it for you.
 
 Features:
 
 * Simple pool creation
-* Convenience function to do querys and transactions
-
-See also:
-
-* [MySQL/OTP](//github.com/mysql-otp/mysql-otp)
-* [Poolboy](//github.com/devinus/poolboy)
+* Convenience function to do queries and transactions
 
 Examples:
 ```Erlang
-%% Create a pool with 5 connection and allow another 5 if they are none available.
-%% returns a supvervise:child_spec()
+%% Creates a pool with 5 connections and allows another 5 if there are none available.
+%% Returns a supvervise:child_spec()
 mysql_poolboy:add_pool(
     {mypool, [{size, 5}, {max_overflow, 10}],
      [{host, "localhost"}, {user, "foo"}, {password, "hello"}, {database, "test"}]}
@@ -40,9 +36,5 @@ License
 
 GNU Lesser General Public License (LGPL) version 3 or any later version.
 Since the LGPL is a set of additional permissions on top of the GPL, both
-license texts are included in the files [COPYING](COPYING) and
-[COPYING.LESSER](COPYING.LESSER) respectively.
-
-We hope this license should be permissive enough while remaining copyleft. If
-you're having issues with this license, please create an issue in the issue
-tracker!
+license texts are included in the files [COPYING.LESSER](COPYING.LESSER) and
+[COPYING](COPYING) respectively.
