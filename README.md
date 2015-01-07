@@ -1,8 +1,10 @@
 MySQL/OTP + Poolboy
 ===================
 
+Status: Not complete and is work in progress.
+
 MySQL/OTP + Poolboy is a wrapper for [MySQL/OTP](//github.com/mysql-otp/mysql-otp) and
-[Poolboy](//github.com/devinus/poolboy) where you create connection pools for the former. 
+[Poolboy](//github.com/devinus/poolboy) where you create connection pools for the former.
 Each application is itself responsible for supervising the pools, i.e. MySQL/OTP + Poolboy won't
 do it for you.
 
