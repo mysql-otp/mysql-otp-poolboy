@@ -16,7 +16,7 @@
 %% You should have received a copy of the GNU Lesser General Public License
 %% along with this program. If not, see <https://www.gnu.org/licenses/>.
 
--module(mysql_pooboy_app).
+-module(mysql_poolboy_app).
 
 -behaviour(application).
 -export([start/2, stop/1]).
