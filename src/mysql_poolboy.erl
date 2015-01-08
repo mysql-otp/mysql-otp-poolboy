@@ -31,7 +31,7 @@
 %% @doc Adds a pool to the started mysql_poolboy application.
 add_pool(PoolName, PoolArgs, MysqlArgs) ->
     PoolSpec = child_spec(PoolName, PoolArgs, MysqlArgs),
-    supervisor:add_child(mysql_poolboy_sup, PoolSpec).
+    supervisor:start_child(mysql_poolboy_sup, PoolSpec).
 
 %% @doc Returns a mysql connection to the given pool.
 checkin(PoolName, Connection) ->
