@@ -1,7 +1,7 @@
 MySQL/OTP + Poolboy
 ===================
 
-Status: **Work in progress**. This README is written with the assumption that #2, #3, #4 and #5 are solved. Some tests should be added as well.
+Status: **Work in progress**. Some tests should be added as well.
 
 **MySQL/OTP + Poolboy** provides connection pooling for [MySQL/OTP](//github.com/mysql-otp/mysql-otp) using [Poolboy](//github.com/devinus/poolboy). It provides convenience functions for executing
 SQL queries on a connection in a pool and lets you choose between two methods for createing
