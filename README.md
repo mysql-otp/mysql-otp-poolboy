@@ -13,17 +13,17 @@ and managing connection pools:
 I want to supervise my own connection pools
 -------------------------------------------
 
-Use `mysql_poolboy:child_spec/3` to get a supervisor child spec for a pool that you can use for
+Use `mysql_poolboy:child_spec/3` to get a child spec for a pool that you can use in
 your own supervisor.
 
 ```Erlang
 %% my own supervisor
 init([]) ->
-    MySqlOptions = [{user, "aladdin"}, {password, "sesame"}, {database, "test"}],
     PoolOptions  = [{size, 10}, {max_overflow, 20}],
+    MySqlOptions = [{user, "aladdin"}, {password, "sesame"}, {database, "test"}],
     ChildSpecs = [
         %% MySQL pools
-        mysql_poolboy:child_spec(pool1, MySqlOptions, PoolOptions),
+        mysql_poolboy:child_spec(pool1, PoolOptions, MySqlOptions),
         %% other workers...
         {some_other_worker, {some_other_worker, start_link, []},
          permanent, 10, worker, [some_other_worker]}
@@ -38,7 +38,7 @@ This approach requires you to start the application using `application:ensure_st
 
 Pools can be added at run-time using `mysql_poolboy:add_pool/3`.
 
-Pools can also be created at start-up by defining configuration parameters for `mysql_poolboy`. The name of each configuration parameter is the pool name and the value is a pair on the form `{MySqlOptions, PoolOptions}`.
+Pools can also be created at start-up by defining configuration parameters for `mysql_poolboy`. The name of each configuration parameter is the pool name and the value is a pair on the form `{PoolOptions, MySqlOptions}`.
 
 Example:
 
@@ -46,8 +46,8 @@ Start your Erlang node with `erl -config mypools.config` where mypools.config:
 
 ```Erlang
 {mysql_poolboy, [
-    {pool1, {[{user, "aladdin"}, {password, "sesame"}, {database, "test"}],
-             [{size, 10}, {max_overflow, 20}]}
+    {pool1, {[{size, 10}, {max_overflow, 20}],
+             [{user, "aladdin"}, {password, "sesame"}, {database, "test"}]}
 ]}.
 ```
 
