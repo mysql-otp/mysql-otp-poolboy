@@ -1,7 +1,7 @@
 MySQL/OTP + Poolboy
 ===================
 
-Status: **Work in progress**. Some tests should be added as well.
+Status: Beta.
 
 **MySQL/OTP + Poolboy** provides connection pooling for [MySQL/OTP](//github.com/mysql-otp/mysql-otp) using [Poolboy](//github.com/devinus/poolboy). It provides convenience functions for executing
 SQL queries on a connection in a pool and lets you choose between two methods for createing
@@ -84,6 +84,25 @@ Sometimes you need to checkout a connection to execute multiple queries on it, w
        ok = mysql:query(Pid, "SET time_zone = ?", [OldTz])
    end).
 ok
+```
+
+Use this as a dependency
+------------------------
+
+Using *erlang.mk*:
+
+```Erlang
+DEPS = mysql_poolboy
+dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.1.0
+```
+
+Using *rebar*:
+
+```Erlang
+{deps, [
+    {mysql_poolboy, ".*", {git, "https://github.com/mysql-otp/mysql-otp-poolboy",
+                    {tag, "0.1.0"}}}
+]}.
 ```
 
 License
