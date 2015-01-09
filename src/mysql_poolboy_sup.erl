@@ -19,14 +19,18 @@
 -module(mysql_poolboy_sup).
 
 -behaviour(supervisor).
--export([init/1]).
+-export([start_link/0, init/1]).
+
+start_link() ->
+    supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
 init([]) ->
     Pools = application:get_all_env(mysql_poolboy),
+    Pools1 = proplists:delete(included_applications, Pools),
     PoolSpec = lists:map(
         fun ({PoolName, {PoolArgs, MysqlArgs}}) ->
-            mysqp_poolboy:child_spec(PoolName, PoolArgs, MysqlArgs)
+            mysql_poolboy:child_spec(PoolName, PoolArgs, MysqlArgs)
         end,
-        Pools
+        Pools1
     ),
     {ok, {{one_for_one, 10, 10}, PoolSpec}}.

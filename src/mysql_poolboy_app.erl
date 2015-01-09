@@ -22,7 +22,8 @@
 -export([start/2, stop/1]).
 
 start(_Type, _Args) ->
-    supervisor:start_link({local, mysql_poolboy_sup}, ?MODULE, []).
+    lager:info("Startings mysql_poolboy god damnit!"),
+    supervisor:start_link({local, mysql_poolboy_sup}, mysql_poolboy_sup, []).
 
 stop(_State) ->
     ok.
