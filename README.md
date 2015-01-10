@@ -22,7 +22,8 @@ in your own supervisor.
 %% my own supervisor
 init([]) ->
     PoolOptions  = [{size, 10}, {max_overflow, 20}],
-    MySqlOptions = [{user, "aladdin"}, {password, "sesame"}, {database, "test"}],
+    MySqlOptions = [{user, "aladdin"}, {password, "sesame"}, {database, "test"},
+                    {prepare, [{foo, "SELECT * FROM foo WHERE id=?"}]}],
     ChildSpecs = [
         %% MySQL pools
         mysql_poolboy:child_spec(pool1, PoolOptions, MySqlOptions),
@@ -54,7 +55,8 @@ is a file with the following contents:
 ```Erlang
 {mysql_poolboy, [
     {pool1, {[{size, 10}, {max_overflow, 20}],
-             [{user, "aladdin"}, {password, "sesame"}, {database, "test"}]}
+             [{user, "aladdin"}, {password, "sesame"}, {database, "test"},
+              {prepare, [{foo, "SELECT * FROM foo WHERE id=?"}]}]}}
 ]}.
 ```
 
@@ -67,7 +69,7 @@ The most commonly used MySQL functions are available with wrappers in
 ```Erlang
 1> mysql_poolboy:query(pool1, "SELECT * FROM foo WHERE id=?", [42]).
 {ok,[<<"id">>,<<"bar">>],[[42,<<"baz">>]]}
-2> mysql_poolboy:execute(pool1, [42]).
+2> mysql_poolboy:execute(pool1, foo, [42]).
 {ok,[<<"id">>,<<"bar">>],[[42,<<"baz">>]]}
 ```
 
