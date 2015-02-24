@@ -30,7 +30,12 @@
 
 %% @doc Adds a pool to the started mysql_poolboy application.
 add_pool(PoolName, PoolArgs, MysqlArgs) ->
-    PoolSpec = child_spec(PoolName, PoolArgs, MysqlArgs),
+    %% We want strategy fifo as default instead of lifo.
+    PoolArgs1 = case proplists:is_defined(strategy, PoolArgs) of
+        true  -> PoolArgs;
+        false -> PoolArgs ++ [{strategy, fifo}]
+    end,
+    PoolSpec = child_spec(PoolName, PoolArgs1, MysqlArgs),
     supervisor:start_child(mysql_poolboy_sup, PoolSpec).
 
 %% @doc Returns a mysql connection to the given pool.
