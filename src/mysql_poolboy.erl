@@ -30,6 +30,7 @@
 
 %% @doc Adds a pool to the started mysql_poolboy application.
 add_pool(PoolName, PoolArgs, MysqlArgs) ->
+    %% We want strategy fifo as default instead of lifo.
     PoolSpec = child_spec(PoolName, PoolArgs, MysqlArgs),
     supervisor:start_child(mysql_poolboy_sup, PoolSpec).
 
@@ -44,8 +45,15 @@ checkout(PoolName) ->
 %% @doc Creates a supvervisor:child_spec. When the need to
 %% supervise the pools in another way.
 child_spec(PoolName, PoolArgs, MysqlArgs) ->
-    PoolArgs1 =
-        [{name, {local, PoolName}}, {worker_module, mysql}] ++ PoolArgs,
+    PoolArgs1 = case proplists:is_defined(strategy, PoolArgs) of
+        true  ->
+            [{name, {local, PoolName}}, {worker_module, mysql} | PoolArgs];
+        false ->
+            %% Use fifo by default. MySQL closes unused connections after a certain time.
+            %% Fifo causes all connections to be regularily used which prevents them from
+            %% being closed.,
+            [{strategy, fifo}, {name, {local, PoolName}}, {worker_module, mysql} | PoolArgs]
+    end,
     poolboy:child_spec(PoolName, PoolArgs1, MysqlArgs).
 
 %% @doc Execute a mysql prepared statement with given params.
