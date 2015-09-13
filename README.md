@@ -10,7 +10,7 @@ executing SQL queries on a connection in a pool and lets you choose between two
 methods for creating and managing connection pools:
 
 1. Use it as a library that helps you supervise your own MySQL connection pools.
-2. Use it as an application that manages its own supervisor for connection pools. 
+2. Use it as an application that manages its own supervisor for connection pools.
 
 I want to supervise my own connection pools
 -------------------------------------------
@@ -107,7 +107,7 @@ Using *erlang.mk*, put this in your `Makefile`:
 
 ```Erlang
 DEPS = mysql_poolboy
-dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.1.0
+dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.1.6
 ```
 
 Using *rebar*, put this in your `rebar.config`:
@@ -115,7 +115,7 @@ Using *rebar*, put this in your `rebar.config`:
 ```Erlang
 {deps, [
     {mysql_poolboy, ".*", {git, "https://github.com/mysql-otp/mysql-otp-poolboy",
-                           {tag, "0.1.0"}}}
+                           {tag, "0.1.6"}}}
 ]}.
 ```
 
