@@ -53,11 +53,12 @@ Start your Erlang node with `erl -config mypools.config` where `mypools.config`
 is a file with the following contents:
 
 ```Erlang
-{mysql_poolboy, [
+[
+ {mysql_poolboy, [
     {pool1, {[{size, 10}, {max_overflow, 20}],
              [{user, "aladdin"}, {password, "sesame"}, {database, "test"},
               {prepare, [{foo, "SELECT * FROM foo WHERE id=?"}]}]}}
-]}.
+]}].
 ```
 
 Using the connection pools
@@ -107,7 +108,7 @@ Using *erlang.mk*, put this in your `Makefile`:
 
 ```Erlang
 DEPS = mysql_poolboy
-dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.1.6
+dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.1.7
 ```
 
 Using *rebar*, put this in your `rebar.config`:
@@ -115,7 +116,7 @@ Using *rebar*, put this in your `rebar.config`:
 ```Erlang
 {deps, [
     {mysql_poolboy, ".*", {git, "https://github.com/mysql-otp/mysql-otp-poolboy",
-                           {tag, "0.1.6"}}}
+                           {tag, "0.1.7"}}}
 ]}.
 ```
 
