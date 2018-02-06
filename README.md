@@ -104,6 +104,8 @@ ok
 Use this as a dependency
 ------------------------
 
+Replace the version with the latest tag or the tag of your choice. The version in the examples below is not updated.
+
 Using *erlang.mk*, put this in your `Makefile`:
 
 ```Erlang
