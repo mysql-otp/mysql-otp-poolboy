@@ -17,8 +17,8 @@
 %% along with this program. If not, see <https://www.gnu.org/licenses/>.
 {application, mysql_poolboy, [
     {description, "MySQL/OTP + Poolboy"},
-    {vsn, "0.1.6"},
+    {vsn, "0.1.8"},
     {modules, []},
     {mod, {mysql_poolboy_app, []}},
-    {applications, [mysql, poolboy]}
+    {applications, [kernel, stdlib, mysql, poolboy]}
 ]}.

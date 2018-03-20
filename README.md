@@ -104,13 +104,11 @@ ok
 Use this as a dependency
 ------------------------
 
-Replace the version with the latest tag or the tag of your choice. The version in the examples below is not updated.
-
 Using *erlang.mk*, put this in your `Makefile`:
 
 ```Erlang
 DEPS = mysql_poolboy
-dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.1.7
+dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.1.8
 ```
 
 Using *rebar*, put this in your `rebar.config`:
@@ -118,7 +116,7 @@ Using *rebar*, put this in your `rebar.config`:
 ```Erlang
 {deps, [
     {mysql_poolboy, ".*", {git, "https://github.com/mysql-otp/mysql-otp-poolboy",
-                           {tag, "0.1.7"}}}
+                           {tag, "0.1.8"}}}
 ]}.
 ```
 
