@@ -108,7 +108,7 @@ Using *erlang.mk*, put this in your `Makefile`:
 
 ```Erlang
 DEPS = mysql_poolboy
-dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.2.0
+dep_mysql_poolboy = git https://github.com/mysql-otp/mysql-otp-poolboy 0.2.1
 ```
 
 Using *rebar*, put this in your `rebar.config`:
@@ -116,7 +116,7 @@ Using *rebar*, put this in your `rebar.config`:
 ```Erlang
 {deps, [
     {mysql_poolboy, ".*", {git, "https://github.com/mysql-otp/mysql-otp-poolboy",
-                           {tag, "0.2.0"}}}
+                           {tag, "0.2.1"}}}
 ]}.
 ```
 
